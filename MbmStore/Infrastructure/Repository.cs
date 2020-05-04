@@ -1,8 +1,6 @@
 ﻿using MbmStore.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace MbmStore.Infrastructure
 {
@@ -11,10 +9,8 @@ namespace MbmStore.Infrastructure
         public static List<Product> Products = new List<Product>();
         public static List<Invoice> Invoices = new List<Invoice>();
 
-
         static Repository()
         {
-
             // Books
             // Book no 1
             Book myBook = new Book();
@@ -36,7 +32,6 @@ namespace MbmStore.Infrastructure
             myBook2.ImageUrl = "The Making of Sgt. Pepper.jpg";
             Products.Add(myBook2);
             myBook2.Category = "Book";
-
 
             // CDs
             // CD no 1
@@ -94,7 +89,6 @@ namespace MbmStore.Infrastructure
             track05.Composer = "Harrison";
             myCD2.AddTrack(track05);
 
-
             Track track06 = new Track("Yellow Submarine", new TimeSpan(0, 2, 38));
             track06.Composer = "Lennon, McCartney";
             myCD2.AddTrack(track06);
@@ -132,13 +126,11 @@ namespace MbmStore.Infrastructure
             myCD2.AddTrack(track14);
             Products.Add(myCD2);
 
-
             // Movies
             // create a new Movie objects
             Movie movie1 = new Movie(5, "Jungle Book", 160.50M, "junglebook.jpg", "Jon Favreau");
             movie1.Category = "Movie";
             Products.Add(movie1);
-
 
             Movie movie2 = new Movie(6, "Gladiator", 49.95M, "gladiator.jpg", "Ridley Scott");
             movie2.Category = "Movie";
@@ -163,6 +155,5 @@ namespace MbmStore.Infrastructure
             Invoices.Add(i1);
             Invoices.Add(i2);
         }
-
     }
 }

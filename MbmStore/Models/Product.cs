@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MbmStore.Models {
-
-    public class Product {
+﻿namespace MbmStore.Models
+{
+    public class Product
+    {
         public int ProductId { get; set; }
         public string Title { get; set; }
         public decimal Price { get; set; }
@@ -13,13 +9,13 @@ namespace MbmStore.Models {
 
         public string Category { get; set; }
 
-
         // constructor
         public Product() { }
 
         // constructor
-        public Product(int ProductId, string title, decimal price) {
-            ProductId = ProductId;
+        public Product(int productId, string title, decimal price)
+        {
+            ProductId = productId;
             Title = title;
             Price = price;
         }

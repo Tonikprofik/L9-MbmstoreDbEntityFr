@@ -1,28 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MbmStore.Models
 {
     public class Customer
     {
-        private DateTime Birthdate;
-
         public int CustomerId { get; set; }
-        public string Firstname { get; set;  }
+        public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string Address { get; set; }
         public string Zip { get; set; }
         public string City { get; set; }
         public string Email { get; set; }
+
+        [Column(TypeName = "datetime2")]
         public DateTime Birthdate { get; set; }
 
         // read only property
 
-
         // property that validates input (the set accessor)
-
 
         // read only property
         public int Age
@@ -31,9 +28,9 @@ namespace MbmStore.Models
             {
                 DateTime now = DateTime.Now;
                 int age = 0;
-                age = now.Year - birthdate.Year;
-                if (now.Month < birthdate.Month ||
-                    (now.Month == birthdate.Month && now.Day < birthdate.Day))
+                age = now.Year - Birthdate.Year;
+                if (now.Month < Birthdate.Month ||
+                    (now.Month == Birthdate.Month && now.Day < Birthdate.Day))
                 {
                     age--;
                 }
@@ -46,7 +43,7 @@ namespace MbmStore.Models
 
         // cunstructor
         public Customer() { }
-        
+
         public Customer(int customerId, string firstnavn, string lastnavn, string address, string zip, string city)
         {
             CustomerId = customerId;
@@ -62,6 +59,5 @@ namespace MbmStore.Models
         {
             PhoneNumbers.Add(phone);
         }
-
     }
 }

@@ -1,20 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Treihard\\VS C#\\Lesson09_MbmStore_startup\\MbmStore\\MbmStore.csproj": {}
+    "C:\\Users\\Tonik Profik\\source\\repos\\L9-MbmstoreDbEntityFr\\MbmStore\\MbmStore.csproj": {}
   },
   "projects": {
-    "C:\\Treihard\\VS C#\\Lesson09_MbmStore_startup\\MbmStore\\MbmStore.csproj": {
+    "C:\\Users\\Tonik Profik\\source\\repos\\L9-MbmstoreDbEntityFr\\MbmStore\\MbmStore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Treihard\\VS C#\\Lesson09_MbmStore_startup\\MbmStore\\MbmStore.csproj",
+        "projectUniqueName": "C:\\Users\\Tonik Profik\\source\\repos\\L9-MbmstoreDbEntityFr\\MbmStore\\MbmStore.csproj",
         "projectName": "MbmStore",
-        "projectPath": "C:\\Treihard\\VS C#\\Lesson09_MbmStore_startup\\MbmStore\\MbmStore.csproj",
-        "packagesPath": "C:\\Users\\tonda\\.nuget\\packages\\",
-        "outputPath": "C:\\Treihard\\VS C#\\Lesson09_MbmStore_startup\\MbmStore\\obj\\",
+        "projectPath": "C:\\Users\\Tonik Profik\\source\\repos\\L9-MbmstoreDbEntityFr\\MbmStore\\MbmStore.csproj",
+        "packagesPath": "C:\\Users\\Tonik Profik\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tonik Profik\\source\\repos\\L9-MbmstoreDbEntityFr\\MbmStore\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\tonda\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Tonik Profik\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,9 +41,13 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[3.1.1, )"
+              "version": "[3.1.2, )"
             },
             "Microsoft.entityframeworkcore.sqlserver": {
               "target": "Package",
@@ -71,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,7 +1,9 @@
+using MbmStore.Data;
 using MbmStore.Models.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +27,8 @@ namespace MbmStore
             services.AddMemoryCache();
             services.AddSession();
 
+            services.AddDbContext<MbmStoreContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("MbmStoreContext")));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -53,9 +57,8 @@ namespace MbmStore
                 defaults: new
                 {
                     controller = "Catalogue",
-                    action = "Index" 
+                    action = "Index"
                 });
-
 
                 endpoints.MapControllerRoute(
                 name: null,
@@ -91,7 +94,7 @@ namespace MbmStore
                 name: "pagination",
                 pattern: "Catalogue/Page{page}",
                 defaults: new { Controller = "Catalogue", action = "Index" });
-                
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}"

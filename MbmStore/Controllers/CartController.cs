@@ -1,4 +1,5 @@
-﻿using MbmStore.Infrastructure;
+﻿using MbmStore.Data;
+using MbmStore.Infrastructure;
 using MbmStore.Models;
 using MbmStore.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -9,11 +10,19 @@ namespace MbmStore.Controllers
     public class CartController : Controller
     {
         private Cart cart;
+        private MbmStoreContext dataContext;
 
-        public CartController(Cart cartService)
+        public CartController(MbmStoreContext dbContext, Cart cartService)
         {
             cart = cartService;
+            dataContext = dbContext;
+
         }
+
+        //public CartController(Cart cartService)
+        //{
+        //    cart = cartService;
+        //}
 
         public ViewResult Index(string returnUrl)
         {
@@ -26,7 +35,7 @@ namespace MbmStore.Controllers
 
         public RedirectToActionResult AddToCart(int productId, string returnUrl)
         {
-            Product product = Repository.Products
+            Product product = dataContext.Products
             .FirstOrDefault(p => p.ProductId == productId);
             if (product != null)
             {
@@ -37,7 +46,7 @@ namespace MbmStore.Controllers
 
         public RedirectToActionResult RemoveFromCart(int productId, string returnUrl)
         {
-            Product product = Repository.Products
+            Product product = dataContext.Products
             .FirstOrDefault(p => p.ProductId == productId);
             if (product != null)
             {

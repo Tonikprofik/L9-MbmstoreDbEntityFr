@@ -2,12 +2,19 @@
 using MbmStore.Models.ViewModels;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using MbmStore.Data;
 
 namespace MbmStore.Controllers
 {
     public class CatalogueController : Controller
     {
+        private MbmStoreContext dataContext;
         public int PageSize = 4;
+
+        public CatalogueController(MbmStoreContext dbContext)
+        {
+            dataContext = dbContext;
+        }
 
         // GET: Catalogue
         public ActionResult Index(string category, int page = 1)
@@ -15,7 +22,7 @@ namespace MbmStore.Controllers
             ProductsListViewModel model = new ProductsListViewModel();
             model = new ProductsListViewModel
             {
-                Products = Repository.Products
+                Products = dataContext.Products
                 .OrderBy(p => p.ProductId)
                 .Where(p => category == null || p.Category == category)
                 .Skip((page - 1) * PageSize)
@@ -25,8 +32,8 @@ namespace MbmStore.Controllers
                     CurrentPage = page,
                     ItemsPerPage = PageSize,
                     TotalItems = category == null ?
-                    Repository.Products.Count() :
-                    Repository.Products.Where(e =>
+                    dataContext.Products.Count() :
+                    dataContext.Products.Where(e =>
                     e.Category == category).Count()
                 },
                 CurrentCategory = category

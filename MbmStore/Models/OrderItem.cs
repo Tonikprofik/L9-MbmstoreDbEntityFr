@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace MbmStore.Models
+﻿namespace MbmStore.Models
 {
     public class OrderItem
     {
@@ -15,15 +10,14 @@ namespace MbmStore.Models
 
         public decimal TotalPrice { get { return Quantity * Product.Price; } }
 
-
-        public OrderItem() { }
-
+        public OrderItem()
+        {
+        }
 
         public OrderItem(Product product, int quantity)
         {
             Product = product;
             Quantity = quantity;
-
         }
     }
 }

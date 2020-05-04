@@ -1,7 +1,9 @@
-﻿using MbmStore.Infrastructure;
+﻿using MbmStore.Data;
+using MbmStore.Infrastructure;
 using MbmStore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,6 +11,13 @@ namespace MbmStore.Controllers
 {
     public class InvoiceController : Controller
     {
+        private MbmStoreContext dataContext;
+
+        public InvoiceController(MbmStoreContext dbContext)
+        {
+            dataContext = dbContext;
+            
+        }
         // GET: Invoice
         public IActionResult Index()
         {
@@ -17,7 +26,7 @@ namespace MbmStore.Controllers
             List<SelectListItem> customers = new List<SelectListItem>();
 
             // generate the dropdown list
-            foreach (Invoice invoice in Repository.Invoices)
+            foreach (Invoice invoice in dataContext.Invoices)
             {
                 customers.Add(new SelectListItem
                 {
@@ -30,7 +39,7 @@ namespace MbmStore.Controllers
             customers = customers.GroupBy(x => x.Value).Select(y => y.First()).OrderBy(z => z.Text).ToList<SelectListItem>();
 
             ViewData["Customers"] = customers;
-            ViewData["Invoices"] = Repository.Invoices;
+            ViewData["Invoices"] = dataContext.Invoices;
 
             return View();
         }
@@ -43,11 +52,11 @@ namespace MbmStore.Controllers
             if (customer != null)
             {
                 // select invoices for a customer with linq
-                invoices = Repository.Invoices.Where(r => r.Customer.CustomerId == customer).ToList();
+                invoices = dataContext.Invoices.Where(r => r.Customer.CustomerId == customer).ToList();
             }
             else
             {
-                invoices = Repository.Invoices;
+                invoices = dataContext.Invoices.ToList();
             }
 
 
@@ -55,7 +64,7 @@ namespace MbmStore.Controllers
             List<SelectListItem> customers = new List<SelectListItem>();
 
             // generate the dropdown list
-            foreach (Invoice invoice in Repository.Invoices)
+            foreach (Invoice invoice in dataContext.Invoices)
             {
                 if (invoice.Customer.CustomerId == customer) {
                     customers.Add(new SelectListItem
